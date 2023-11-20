@@ -8,14 +8,15 @@
 
 import pandas as pd
 
-exoplanets_path = 'data/exoplanets.csv'
-exoplanets_header = 290
+EXOPLANETS_PATH = 'data/exoplanets.csv'
+EXOPLANETS_HEADER = 290
+SOLARPLANETS_URL = 'https://raw.githubusercontent.com/InterImm/dataset-planets-in-solar-system/master/dataset/planets_in_solar_system.csv'
 
-descriptions = pd.read_csv(exoplanets_path, nrows=exoplanets_header - 1)[2:-1].iloc[:, 0].tolist()
+descriptions = pd.read_csv(EXOPLANETS_PATH, nrows=EXOPLANETS_HEADER - 1)[2:-1].iloc[:, 0].tolist()
 descriptions_clear = [description.split(':')[1].strip() for description in descriptions]
 
 columns_considered = [
-    'pl_name', 'hostname', 'sy_snum', 'sy_pnum', 'sy_mnum',
+    'pl_name', 'hostname', 'discoverymethod', 'pl_controv_flag', 'sy_snum', 'sy_pnum', 'sy_mnum',
     'pl_orbper', 'pl_orbpererr1', 'pl_orbpererr2', 'pl_rade', 'pl_radeerr1', 'pl_radeerr2',
     'pl_masse', 'pl_masseerr1', 'pl_masseerr2', 'pl_dens', 'pl_denserr1', 'pl_denserr2',
     'pl_orbeccen', 'pl_orbeccenerr1', 'pl_orbeccenerr2', 'pl_insol', 'pl_insolerr1', 'pl_insolerr2',
@@ -37,11 +38,13 @@ for column in columns_considered:
                 continue
             columns_clear.append(description_clear)
 
-exoplanets = pd.read_csv(exoplanets_path, header=exoplanets_header, usecols=columns_considered, index_col=None)
-exoplanets.columns = columns_clear
+exoplanets = pd.read_csv(EXOPLANETS_PATH, header=EXOPLANETS_HEADER, usecols=columns_considered, index_col=None)
+# exoplanets.columns = columns_clear
 
-columns_group = ['Planet Name', 'Host Name', 'Number of Stars', 'Number of Planets', 'Number of Moons']
+columns_group = ['Planet Name', 'Host Name']
 exoplanets_grouped = exoplanets.groupby(columns_group).mean()
-exoplanets_grouped = exoplanets_grouped.reset_index()
+exoplanetzzs_grouped = exoplanets_grouped.reset_index()
+
+solarplanets = pd.read_csv(SOLARPLANETS_URL)
 
 # TODO: make a moving graph of how fast planets go around their star, including earth
