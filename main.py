@@ -67,6 +67,12 @@ def number_by_discoverymethod(data):
     plt.show()
 
 
+def orbital_period(data):
 
+    return
+
+def distance_from_star(data):
+
+    return
 
 # TODO: make a moving graph of how fast planets go around their star, including earth
