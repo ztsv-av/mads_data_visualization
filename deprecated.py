@@ -32,6 +32,89 @@ ani.save('planets_orbiting_star_animation2.gif', writer='pillow', fps=30)
 # Show the plot
 plt.show()
 
+# -----------------------
+
+plt.figure(figsize=(12, 6))
+
+ax1 = plt.subplot(1, 2, 1)
+sns.histplot(
+    data=exoplanets, 
+    y='disc_year', 
+    multiple="stack",
+    binwidth=2, 
+    hue='discoverymethod', 
+    palette='viridis'
+)
+plt.title('Exoplanets by Year and Discovery Method', fontsize=16)
+plt.xlabel('Number of Exoplanets Discovered',fontsize=12)
+plt.ylabel('Year',fontsize=12)
+plt.xticks(rotation=45)
+plt.yticks(range(2000, max(exoplanets['disc_year'])+1, 5))
+legend_labels = exoplanets['discoverymethod'].unique()
+ax1.legend(labels=legend_labels, title='Discovery Method', fontsize=11)
+
+ax2 = plt.subplot(1, 2, 2)
+sns.histplot(
+    data=exoplanets[exoplanets['kepler_confirmed']], 
+    y='disc_year', 
+    multiple="stack",
+    binwidth=2, 
+    hue='discoverymethod', 
+    palette='viridis'
+)
+plt.title('Kepler Confirmed Exoplanets by Year and Discovery Method', fontsize=16)
+plt.xlabel('Number of Kepler Confirmed Exoplanets Discovered',fontsize=12)
+plt.ylabel('Year',fontsize=12)
+plt.xticks(rotation=45)
+plt.yticks(range(2000, max(exoplanets['disc_year'])+1, 5))
+legend_labels_kepler = exoplanets[exoplanets['kepler_confirmed']]['discoverymethod'].unique()
+ax2.legend(labels=legend_labels_kepler, title='Discovery Method', fontsize=12, loc='lower right')
+
+plt.tight_layout()
+plt.show()
+
+
+# -----------------------
+
+plt.figure(figsize=(12, 6))
+plt.suptitle("Where Exoplanets are Located in the Sky", fontsize=16)
+
+ax1 = plt.subplot(1, 2, 1)
+sns.scatterplot(
+    x='ra', 
+    y='dec', 
+    hue='discoverymethod', 
+    palette='viridis',
+    data=exoplanets, 
+    alpha=0.5, 
+    ax=ax1
+)
+ax1.set_title("Map of Exoplanets Locations in the Sky")
+ax1.set_xlabel("Right Ascention (RA)")
+ax1.set_ylabel("Declination (Deg)")
+ax1.legend(labels=legend_labels, title='Discovery Method', fontsize=8).set_visible(False)
+legend_labels = exoplanets['discoverymethod'].unique()
+ax1.legend(labels=legend_labels, title='Discovery Method', fontsize=8, bbox_to_anchor=(1.05, 1), loc='upper left')
+
+ax2 = plt.subplot(1, 2, 2)
+sns.scatterplot(
+    x='ra', 
+    y='dec', 
+    hue='sy_dist', 
+    palette='viridis',
+    data=exoplanets, 
+    alpha=0.5, 
+    ax=ax2
+)
+ax2.set_title("Map of Exoplanets Locations in the Sky")
+ax2.set_xlabel("Right Ascention (RA)")
+ax2.set_ylabel("Declination (Deg)")
+legend2_labels = ['1500 P','3000 P','4500 P','6000 P','7500 P']
+ax2.legend(labels=legend2_labels, fontsize=8, bbox_to_anchor=(1.05, 1), loc='upper left')
+
+plt.tight_layout()
+plt.show()
+
 # ------------------------
 
 fig, axs = plt.subplots(2, 1, figsize=(16, 8))
