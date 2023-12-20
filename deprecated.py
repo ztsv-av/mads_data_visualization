@@ -1,3 +1,20 @@
+# Correlation Heatmap
+exoplanets_corr = exoplanets.drop(columns=['sy_mnum', 'sy_snum', 'sy_pnum']).select_dtypes(include=['number']).corr()
+pl_orbper_corr = exoplanets_corr.loc[['pl_orbper'], :]
+column_mapping = {key: column_descriptions.get(key, key) for key in pl_orbper_corr.columns}
+pl_orbper_corr_T = exoplanets_corr.loc[['pl_orbper'], :].T
+
+plt.figure(figsize=(12, 6))
+ax = sns.heatmap(pl_orbper_corr_T, annot=True, cmap='icefire', fmt=".2f", linewidths=0.5, xticklabels=['Orbital Period'])
+plt.title('Correlation Heatmap for Orbital Period', fontsize=16)
+ax.set_yticklabels([column_mapping[key] for key in pl_orbper_corr.columns])
+
+plt.show()
+
+# Drop Planets with NAs
+columns_drop_nas = ['pl_orbper', 'pl_orbsmax', 'pl_rade', 'pl_masse', 'pl_orbeccen', 'sy_dist']
+exoplanets_nas = exoplanets.dropna(subset=columns_drop_nas)
+
 fig, ax = plt.subplots(figsize=(8, 8))
 ax.set_xlim(-20, 20)
 ax.set_ylim(-20, 20)
