@@ -1,4 +1,58 @@
+# Controversial
+
+## is Exoplanet Controversial? How Many Kepler Confirmed Planets?
+
+plt.figure(figsize=(10, 6))
+plt.subplot(1, 2, 1)
+wedges, texts, autotexts = plt.pie(
+    exoplanets['pl_controv_flag'].value_counts(), 
+    labels=['Not Controversial', 'Controversial'], 
+    autopct='', 
+    colors=['#22628e', '#ae0038'],
+    textprops={'fontsize': 12, 'color': 'black'}, 
+    wedgeprops={'edgecolor': 'black', "alpha": 0.7},
+    startangle=50
+)
+percs = exoplanets['pl_controv_flag'].value_counts(normalize=True)*100
+labels = [f'{label} - {perc:.1f}%' for label, perc in zip(['Not Controversial', 'Controversial'], percs)]
+plt.legend(
+    wedges, 
+    labels, 
+    title='Legend', 
+    bbox_to_anchor=(0.5, 1),
+    loc='upper center'
+)
+plt.axis('equal')
+plt.title('Proportion of Controversial Exoplanets', fontsize=16)
+
+plt.subplot(1, 2, 2)
+wedges, texts, autotexts = plt.pie(
+    exoplanets['kepler_confirmed'].value_counts(), 
+    labels=['Not Kepler Confirmed', 'Kepler Confirmed'], 
+    autopct='', 
+    colors=['#ae0038', '#22628e'],
+    textprops={'fontsize': 12, 'color': 'black'}, 
+    wedgeprops={'edgecolor': 'black', "alpha": 0.7},
+    startangle=320
+)
+percs = exoplanets['kepler_confirmed'].value_counts(normalize=True)*100
+labels = [f'{label} - {perc:.1f}%' for label, perc in zip(['Not Kepler Confirmed', 'Kepler Confirmed'], percs)]
+plt.legend(
+    wedges, 
+    labels, 
+    title='Legend', 
+    bbox_to_anchor=(0.5, 1),
+    loc='upper center'
+)
+plt.axis('equal')
+plt.title('Proportion of Kepler Confirmed Exoplanets', fontsize=16)
+
+plt.tight_layout()
+plt.show()
+
+
 # Correlation Heatmap
+
 exoplanets_corr = exoplanets.drop(columns=['sy_mnum', 'sy_snum', 'sy_pnum']).select_dtypes(include=['number']).corr()
 pl_orbper_corr = exoplanets_corr.loc[['pl_orbper'], :]
 column_mapping = {key: column_descriptions.get(key, key) for key in pl_orbper_corr.columns}
@@ -11,7 +65,9 @@ ax.set_yticklabels([column_mapping[key] for key in pl_orbper_corr.columns])
 
 plt.show()
 
+
 # Drop Planets with NAs
+
 columns_drop_nas = ['pl_orbper', 'pl_orbsmax', 'pl_rade', 'pl_masse', 'pl_orbeccen', 'sy_dist']
 exoplanets_nas = exoplanets.dropna(subset=columns_drop_nas)
 
@@ -21,6 +77,7 @@ ax.set_ylim(-20, 20)
 ax.set_xlabel('X (Distance from Star)')
 ax.set_ylabel('Y (Distance from Star)')
 ax.set_title('Animated 2D Plot of Planets Orbiting a Star')
+
 
 # Initialize scatter plots for each planet
 planets, = ax.plot([], [], '.', markersize=4)
