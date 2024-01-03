@@ -66,6 +66,64 @@ ax.set_yticklabels([column_mapping[key] for key in pl_orbper_corr.columns])
 plt.show()
 
 
+# Feature Relationships
+
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(14, 8))
+
+# distance
+sns.scatterplot(x='pl_orbsmax', y='pl_orbper', hue='sy_dist_log', data=exoplanets, alpha=0.3, color='#22628e', ax=axes[0, 0])
+sns.scatterplot(x='semimajorAxis_AU', y='sideralOrbit', data=solarplanets, label='Solar Planets', alpha=0.8, color='#FFC300', edgecolor='black', ax=axes[0, 0])
+sns.scatterplot(x='semimajorAxis_AU', y='sideralOrbit', data=earth_data, label='Earth', alpha=1, color='#DAF7A6', edgecolor='black', ax=axes[0, 0])
+earth_x = earth_data['semimajorAxis_AU'].values[0]
+earth_y = earth_data['sideralOrbit'].values[0]
+axes[0, 0].text(earth_x + 0.1, earth_y - 300, 'Earth', color='black', fontsize=12, ha='left', va='bottom', path_effects=[pe.withStroke(linewidth=1, foreground="white")])
+axes[0, 0].set_title('Orbital Distance vs Orbital Period', fontsize=16)
+axes[0, 0].set_xlabel('Orbital Distance (AU)', fontsize=12)
+axes[0, 0].set_ylabel('Orbital Period (days)', fontsize=12)
+
+# radius 
+sns.scatterplot(x='pl_rade', y='pl_orbper', data=exoplanets, alpha=0.3, hue='sy_dist_log', ax=axes[0, 1])
+sns.scatterplot(x='radius_earth', y='sideralOrbit', data=solarplanets, label='Solar Planets', alpha=0.8, color='#f2d40c', ax=axes[0, 1], edgecolor='black')
+sns.scatterplot(x='radius_earth', y='sideralOrbit', data=earth_data, label='Earth', alpha=0.7, color='black', ax=axes[0, 1])
+earth_x = earth_data['radius_earth'].values[0]
+earth_y = earth_data['sideralOrbit'].values[0]
+axes[0, 1].text(earth_x, earth_y, 'Earth', color='black', fontsize=12, ha='left', va='bottom', path_effects=[pe.withStroke(linewidth=1, foreground="white")])
+axes[0, 1].set_xlabel('Planet Radius (Earth)', fontsize=12)
+axes[0, 1].set_ylabel('Orbital Period (days)', fontsize=12)
+axes[0, 1].set_title('Planet Radius vs Orbital Period', fontsize=16)
+
+# mass
+sns.scatterplot(x='pl_masse', y='pl_orbper', data=exoplanets, alpha=0.3, hue='sy_dist_log', ax=axes[1, 0])
+sns.scatterplot(x='mass_earth', y='sideralOrbit', data=solarplanets, label='Solar Planets', alpha=0.8, color='#f2d40c', ax=axes[1, 0], edgecolor='black')
+sns.scatterplot(x='mass_earth', y='sideralOrbit', data=earth_data, label='Earth', alpha=0.7, color='black', ax=axes[1, 0])
+earth_x = earth_data['mass_earth'].values[0]
+earth_y = earth_data['sideralOrbit'].values[0]
+axes[1, 0].text(earth_x, earth_y, 'Earth', color='black', fontsize=12, ha='left', va='bottom', path_effects=[pe.withStroke(linewidth=1, foreground="white")])
+axes[1, 0].set_xlabel('Planet Mass (Earth)', fontsize=12)
+axes[1, 0].set_ylabel('Orbital Period (days)', fontsize=12)
+axes[1, 0].set_title('Planet Mass vs Orbital Period', fontsize=16)
+
+# eccentricity
+sns.scatterplot(x='pl_orbeccen', y='pl_orbper', data=exoplanets, alpha=0.3, hue='sy_dist_log', ax=axes[1, 1])
+sns.scatterplot(x='eccentricity', y='sideralOrbit', data=solarplanets, label='Solar Planets', alpha=0.8, color='#f2d40c', ax=axes[1, 1], edgecolor='black')
+sns.scatterplot(x='eccentricity', y='sideralOrbit', data=earth_data, label='Earth', alpha=0.7, color='black', ax=axes[1, 1])
+earth_x = earth_data['eccentricity'].values[0]
+earth_y = earth_data['sideralOrbit'].values[0]
+axes[1, 1].text(earth_x, earth_y, 'Earth', color='black', fontsize=12, ha='left', va='bottom', path_effects=[pe.withStroke(linewidth=1, foreground="white")])
+axes[1, 1].set_xlabel('Planet Eccentricity', fontsize=12)
+axes[1, 1].set_ylabel('Orbital Period (days)', fontsize=12)
+axes[1, 1].set_title('Planet Eccentricity vs Orbital Period', fontsize=16)
+
+for ax in axes.flat:
+    ax.get_legend().remove()
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+handles, labels = axes[0, 0].get_legend_handles_labels()
+fig.legend(handles, labels, loc='upper right', bbox_to_anchor=(0.62, 0.03), fontsize=12)
+plt.tight_layout()
+plt.show()
+
+
 # Drop Planets with NAs
 
 columns_drop_nas = ['pl_orbper', 'pl_orbsmax', 'pl_rade', 'pl_masse', 'pl_orbeccen', 'sy_dist']
