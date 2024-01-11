@@ -408,5 +408,12 @@ for i in pc_clusters['Cluster'].unique():
                        points[hull.vertices,0][0])
     y_hull = np.append(points[hull.vertices,1],
                        points[hull.vertices,1][0])
+    # interpolate
+    dist = np.sqrt((x_hull[:-1] - x_hull[1:])**2 + (y_hull[:-1] - y_hull[1:])**2)
+    dist_along = np.concatenate(([0], dist.cumsum()))
+    spline, u = interpolate.splprep([x_hull, y_hull], 
+                                    u=dist_along, s=0, per=1)
+    interp_d = np.linspace(dist_along[0], dist_along[-1], 50)
+    interp_x, interp_y = interpolate.splev(interp_d, spline)
     # plot shape
-    ax4.fill(x_hull, y_hull, c=cluster_colors[kmeans_clusters[idx]], alpha=0.3, )
+    plt.fill(interp_x, interp_y, '--', c=colors[i], alpha=0.2)
