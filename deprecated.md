@@ -1,3 +1,7 @@
+> - **Eccentricity** is a measure of how elliptical or circular an orbit is.
+>   - An eccentricity of 0 indicates a perfectly circular orbit.
+>   - An eccentricity close to 1 indicates a highly elongated or elliptical orbit.
+
 ```
 # Some Maximums
 

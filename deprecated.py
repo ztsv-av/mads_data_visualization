@@ -387,3 +387,26 @@ table5_pretty.field_names = table5.columns
 for row in table5.itertuples(index=False):
     table5_pretty.add_row(row)
 print_table(table5_pretty, "Top 10 Distance from Earth (Parsec)")
+
+# PRINTING CONVEX HULL AT KMEANS
+# PC1	PC2	Cluster	Center
+# 0	-4.188380	-0.537268	1	[-3.3358130281780167, -0.5275890053379767]
+# 1	-3.845811	-0.014483	1	[-3.3358130281780167, -0.5275890053379767]
+# 2	-1.973248	-1.031016	1	[-3.3358130281780167, -0.5275890053379767]
+# 3	-1.355944	-0.643700	0	[0.041930427373717376, -0.22920241824658824]
+# 4	-1.414702	-2.196838	4	[-1.4147016350743464, -2.196838375226245]
+# 5	-1.385345	3.487958	2	[-0.1559401159293939, 2.2306042141353872]
+for i in pc_clusters['Cluster'].unique():
+    points = pc_clusters[pc_clusters['Cluster'] == i][['PC1', 'PC2']].values
+    if len(points) == 1:
+        continue
+    # get convex hull
+    hull = ConvexHull(points)
+    # get x and y coordinates
+    # repeat last point to close the polygon
+    x_hull = np.append(points[hull.vertices,0],
+                       points[hull.vertices,0][0])
+    y_hull = np.append(points[hull.vertices,1],
+                       points[hull.vertices,1][0])
+    # plot shape
+    ax4.fill(x_hull, y_hull, c=cluster_colors[kmeans_clusters[idx]], alpha=0.3, )
