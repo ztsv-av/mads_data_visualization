@@ -1,28 +1,12 @@
 # Description
-Repository for Data Visualization Course, University of Luxembourg, 2023
 
-# Data
+Repository for the Data Visualization Course, University of Luxembourg, 2024.\
+Author: Anton Zaitsev.
 
-## NASA Exoplanet Archive
+# Notes
 
-https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS
-
-## Solar System Major Bodies Data
-
-https://www.kaggle.com/datasets/jaredsavage/solar-system-major-bodies-data
-
-## Kepler Confirmed Planets
-
-https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=kep_conf_names
-
-
-## Equilibrium Temperatures for Solar Planets
-
-http://astro.vaporia.com/start/equilibriumtemperature.html
-
-## The Distances from the Solar Planets to the Earth
-
-https://promenade.imcce.fr/en/pages5/573.html
+- Presentation Powerpoint is not included in the repository, since it has high weight (287 MB), due to the Planet Rotation Period & Temperature animation plot.
+- See data references in the ```main.ipynb``` file.
 
 # Converting to HTML
 ```
