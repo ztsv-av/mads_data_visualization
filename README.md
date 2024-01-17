@@ -16,4 +16,6 @@ jupyter nbconvert --to html --no-input main.ipynb
 
 # Converting .md to PDF
 
+```
 pandoc presentation_notes.md --output presentation_notes.pdf -V fontsize=10pt
+```
