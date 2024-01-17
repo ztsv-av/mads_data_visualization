@@ -29,7 +29,7 @@ An astronomical unit (AU) is a unit of measurement equal to the average distance
     - Earth radius = 6.371 x 10^3 km
     - Earth mass = 5.972 x 10^24 kg
     - Earth orbital distance = 1 AU
-    - Earth's Equilibrium Temperature: ≈ 255K = -18C
+    - Earth's Equilibrium Temperature: $\approx$ 255K = -18C
 
 # How Distance to Star Affects Planet's Temperature and Rotational Period
 
@@ -45,7 +45,7 @@ An astronomical unit (AU) is a unit of measurement equal to the average distance
 3. The color cmap for stars is different from planet one, colors go from red to light yellow-blue to dark blue (usually used to represent star temperature).
 
 - Inner Boundary ("Runaway Greenhouse"): This is the distance from the star where the greenhouse effect becomes too strong making the surface temperature too hot for liquid water.
-- Outer Boundary ("Maximum CO₂ Greenhouse"): Beyond this distance, the greenhouse effect is not sufficient to keep the surface temperature warm enough for liquid water to exist.
+- Outer Boundary ("Maximum CO2 Greenhouse"): Beyond this distance, the greenhouse effect is not sufficient to keep the surface temperature warm enough for liquid water to exist.
 
 ## K-Means & PCA
 
@@ -56,4 +56,4 @@ An astronomical unit (AU) is a unit of measurement equal to the average distance
 
 1. Planet's information was checked on the official NASA Exoplanets catalog website.
 2. The planet that is closest to Earth according to K-Means Analysis, i.e. Kepler 22-b, is supposedly a super-Earth that could be covered in a super ocean, meaning our Habitable Zone analysis is correct.
-3. Time to get calculations are extremely approximate. Used approximate time to get to Mars, which is about 7 month. Then used the distance to mars, to exoplanet and calculated the time to get to the planet ($\frac{\text{time to get to mars \times distance to exoplanet}}{distance to mars}$).
+3. Time to get calculations are extremely approximate. Used approximate time to get to Mars, which is about 7 month. Then used the distance to mars, to exoplanet and calculated the time to get to the planet $\left(\frac{\text{time to get to mars} \times \text{distance to exoplanet}}{\text{distance to mars}}\right)$.
