@@ -7,7 +7,7 @@ Author: Anton Zaitsev.
 
 - Firstly, download Exoplanets and Solarplanets dataset to 'data' folder inside the repository.
 - See data references in the ```main.ipynb``` file.
-- Presentation Powerpoint is not included in the repository, since it has high weight (287 MB), due to the Planet Rotation Period & Temperature animation plot.
+- Presentation Powerpoint is included in the repository without the Planet Rotation Period & Temperature animation plot, due to its high weight (287 MB).
 
 # Converting to HTML
 ```
