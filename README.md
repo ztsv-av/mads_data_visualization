@@ -5,9 +5,10 @@ Author: Anton Zaitsev.
 
 # Notes
 
-- Firstly, download Exoplanets and Solarplanets dataset to 'data' folder inside the repository.
+- First, make sure to download Exoplanets and Solarplanets dataset to the 'data' folder inside the repository.
 - See data references in the ```main.ipynb``` file.
-- Presentation Powerpoint is included in the repository without the Planet Rotation Period & Temperature animation plot, due to its high weight (287 MB).
+- Presentation Powerpoint contains a Planet Rotation Period & Temperature animation plot with a decreased number of frames and planets, due to the high weight of the original animated plot.
+- In order to fully reconstruct the Planet Rotation Period & Temperature animation plot, change decreased values for the number of frames and the number of exoplanets (100 and 100 in the code) to the according values specified in the comments. **Beware**: using full num_planets and num_frames will take a lot of time to generate the animation, which is around 8 minutes for data generation and 30-40 minutes for the animation generation (depends on the processor power).
 
 # Converting to HTML
 ```
