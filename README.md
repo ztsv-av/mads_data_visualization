@@ -13,12 +13,12 @@ Author: Anton Zaitsev.
 
 # Required Libraries
 
-> To install all required libraries, one can write the following command in the terminal:
+To **install** all required **libraries**, one can write the following command in the terminal:
 ```
 pip install -r requirements.txt
 ```
 
-> Libraries used:
+Libraries used:
 - pandas
 - numpy
 - seaborn
