@@ -30,13 +30,27 @@ Libraries used:
 
 We used ```Python 3.9.11```.
 
-# Converting to HTML
+# Useful Commands
+
+## Converting to HTML
 ```
 jupyter nbconvert --to html --no-input main.ipynb
 ```
 
-# Converting .md to PDF
+## Converting to Slides
+
+```
+jupyter nbconvert --to slides --no-input product.ipynb
+```
+
+## Converting .md to PDF
 
 ```
 pandoc notes.md --output notes.pdf -V fontsize=10pt
+```
+
+## Creating Custom Template
+
+```
+jupyter nbconvert --to slides --no-input product.ipynb --stdout > custom_template.tpl
 ```
