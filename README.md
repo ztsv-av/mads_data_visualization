@@ -40,7 +40,7 @@ jupyter nbconvert --to html --no-input main.ipynb
 ## Converting to Slides
 
 ```
-jupyter nbconvert --to slides --no-input product.ipynb
+jupyter nbconvert --to slides --no-input main.ipynb
 ```
 
 ## Converting .md to PDF
@@ -52,5 +52,5 @@ pandoc notes.md --output notes.pdf -V fontsize=10pt
 ## Creating Custom Template
 
 ```
-jupyter nbconvert --to slides --no-input product.ipynb --stdout > custom_template.tpl
+jupyter nbconvert --to slides --no-input main.ipynb --stdout > custom_template.tpl
 ```
